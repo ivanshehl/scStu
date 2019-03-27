@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.ivan.tpp</groupId>
+	<artifactId>gangbeng</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
+	<name>gangbeng</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<!-- 文件拷贝时的编码 -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- 编译时的编码 -->
+		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+
+		<junit.version>4.12</junit.version>
+		<springboot.version>1.5.19.RELEASE</springboot.version>
+		<springboot.plugin.version>2.1.3.RELEASE</springboot.plugin.version>
+		<mysql.jdbc.version>5.1.21</mysql.jdbc.version>
+		<mybatis.starter.version>1.3.3</mybatis.starter.version>
+		<druid.version>1.1.14</druid.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${springboot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>${mysql.jdbc.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mybatis.spring.boot</groupId>
+				<artifactId>mybatis-spring-boot-starter</artifactId>
+				<version>${mybatis.starter.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>druid</artifactId>
+				<version>${druid.version}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<modules>
+		<module>gangbeng-eureka</module>
+		<module>gangbeng-boot</module>
+		<module>gangbeng-hystrix</module>
+		<module>gangbeng-ribbon</module>
+		<module>gangbeng-zuul</module>
+		<module>gangbeng-stream</module>
+	</modules>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${springboot.plugin.version}</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>

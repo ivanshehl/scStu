@@ -1,0 +1,9 @@
+server: 
+  port: 8080
+mybatis:
+  configLocation: classpath:mybatis-config.xml
+  mapperLocations: classpath:/mapper/**/*.xml
+  typeAliasesPackage: com.ivan.tpp.boot.business.*.model
+spring:
+  profiles:
+    active: dev
