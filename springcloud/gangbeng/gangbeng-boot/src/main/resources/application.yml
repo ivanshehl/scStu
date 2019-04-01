@@ -1,5 +1,15 @@
 server: 
   port: 8080
+
+management: 
+  endpoints: 
+    web: 
+      exposure: 
+        include:*
+    jolokia: 
+      enabled: true
+  security:
+    enabled: false
 mybatis:
   configLocation: classpath:mybatis-config.xml
   mapperLocations: classpath:/mapper/**/*.xml

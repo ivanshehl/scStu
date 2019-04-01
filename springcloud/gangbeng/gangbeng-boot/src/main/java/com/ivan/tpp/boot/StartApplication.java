@@ -4,17 +4,21 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 
-@ComponentScan(basePackages={"com.ivan.tpp.boot"})
+//@ComponentScan(basePackages={"com.ivan.tpp.boot"})
+@Configuration
 @MapperScan("com.ivan.tpp.boot.business.*.dao")
+@ComponentScan
 @ImportResource(locations = { "classpath:application-tx.xml" })
 @EnableAutoConfiguration
 public class StartApplication {
 
 	public static void main(String[] args) {
-		
 		SpringApplication.run(StartApplication.class, args);
 	}
+	
+	
 
 }

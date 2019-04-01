@@ -16,9 +16,10 @@ import com.ivan.tpp.boot.business.user.service.IUserService;
 @ResponseBody
 @RequestMapping("/user")
 public class UserController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserController.class);
+
 	@Autowired
 	private IUserService userService;
 
@@ -27,29 +28,27 @@ public class UserController {
 	public User login(
 			@RequestParam(value = "username", required = false) String username,
 			@RequestParam(value = "password", required = false) String password) {
-			User user = new User();
-			user.setId(1);
-			user.setName("ivanshe");
-			user.setAge(35);
-			logger.info("username={}; passowrd={}",username,password);
+		User user = new User();
+		user.setId(1);
+		user.setName("ivanshe");
+		user.setAge(35);
+		logger.info("username={}; passowrd={}", username, password);
 		return user;
 	}
-	
+
 	@RequestMapping(value = { "/select" }, method = { RequestMethod.POST,
 			RequestMethod.GET })
-	public User selectUser(
-			@RequestParam(value = "id", required = false) Long id) {
-			User user = userService.getUserById(id);
-			logger.info("username={};",user);
+	public User selectUser(@RequestParam(value = "id", required = false) Long id) {
+		User user = userService.getUserById(id);
+		logger.info("username={};", user);
 		return user;
 	}
-	
+
 	@RequestMapping(value = { "/addUser" }, method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public User addUser(
 			@RequestParam(value = "name", required = false) String name,
-			@RequestParam(value = "age", required = false) Integer age
-			){
+			@RequestParam(value = "age", required = false) Integer age) {
 		User user = new User();
 		user.setAge(age);
 		user.setName(name);

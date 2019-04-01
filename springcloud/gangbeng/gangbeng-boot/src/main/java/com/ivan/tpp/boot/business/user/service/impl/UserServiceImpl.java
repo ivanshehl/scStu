@@ -13,20 +13,30 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserMapper userMapper;
 	
+//	@Transactional(propagation=Propagation.NEVER,rollbackFor=Exception.class)
 	@Override
 	public User getUserById(Long id) {
-		User user = new User();
-		user.setAge(70);
-		user.setName("xiaobai");
-//		return userMapper.selectByPrimaryKey(id);
-		userMapper.insert(user);
+		User user = userMapper.selectByPrimaryKey(id);
+		User mmu = new User();
+		mmu.setAge(70);
+		mmu.setName("xiaobai");
+		userMapper.insert(mmu);
+		if(true){
+			throw new RuntimeException("getUserByIdgetUserByIdgetUserByIdgetUserById");
+		}
 		return user;
 	}
 
 	@Override
 	public void addUser(User user) {
 		User temp = getUserById(1L);
-		userMapper.insert(user);
+		User mmu = new User();
+		mmu.setAge(70);
+		mmu.setName("xiaobai");
+		userMapper.insert(mmu);
+		if(true){
+			throw new RuntimeException("12345");
+		}
 	}
 
 	
