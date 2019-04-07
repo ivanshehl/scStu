@@ -14,8 +14,13 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource(locations = { "classpath:application-tx.xml" })
 @EnableAutoConfiguration
 public class StartApplication {
-
+	
 	public static void main(String[] args) {
+//		DefaultListableBeanFactory
+//		$DependencyObjectProvider@61911947
+//		spring.rabbitmq
+//		RabbitConnectionFactoryBean
+//		AsyncRabbitTemplate
 		SpringApplication.run(StartApplication.class, args);
 	}
 	

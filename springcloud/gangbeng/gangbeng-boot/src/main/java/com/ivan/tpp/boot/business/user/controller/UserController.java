@@ -1,7 +1,12 @@
 package com.ivan.tpp.boot.business.user.controller;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +24,15 @@ public class UserController {
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
+	
+	private static AtomicInteger idx = new AtomicInteger();
 
+	@Autowired
+	private RabbitTemplate jsonRabbitTemplate;
+	
+	@Autowired
+	private RabbitTemplate simpleRabbitTemplate;
+	
 	@Autowired
 	private IUserService userService;
 
@@ -39,6 +52,11 @@ public class UserController {
 	@RequestMapping(value = { "/select" }, method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public User selectUser(@RequestParam(value = "id", required = false) Long id) {
+		logger.info("getVirtualHost={};", jsonRabbitTemplate.getConnectionFactory().getUsername());
+//		Message
+//		rabbitTemplate.send("exchangeOne", "exchangeOne.queue.key", buildMessage());
+//		rabbitTemplate.send(buildMessage());
+		sendObject();
 		User user = userService.getUserById(id);
 		logger.info("username={};", user);
 		return user;
@@ -54,6 +72,29 @@ public class UserController {
 		user.setName(name);
 		userService.addUser(user);
 		return user;
+	}
+	
+	private Message buildMessage(){
+		Integer val = idx.addAndGet(1);
+		MessageProperties properties = new MessageProperties();
+		Message message = new Message(("tes2222222222t"+idx).getBytes(), properties);
+		properties.setHeader("comein", val);
+		properties.setHeader("time1", 1);
+		properties.setHeader("time2", 1);
+		properties.setHeader("time3", 1);
+		
+		return message;
+	}
+	
+	private void sendObject(){
+		simpleRabbitTemplate.convertAndSend("exchangeOne", "exchangeOne.queue.key", buildMessage());
+	}
+	
+	private void sendJson(){
+		User mmu = new User();
+		mmu.setAge(16);
+		mmu.setName("1234");
+		jsonRabbitTemplate.convertAndSend("exchangeOne", "exchangeOne.queue.key", mmu);
 	}
 
 }
