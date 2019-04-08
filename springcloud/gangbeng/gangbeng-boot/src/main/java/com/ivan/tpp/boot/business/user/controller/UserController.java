@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ivan.tpp.boot.business.user.model.User;
 import com.ivan.tpp.boot.business.user.service.IUserService;
+import com.ivan.tpp.boot.business.user.service.impl.HelloWorldCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @Controller
 @ResponseBody
@@ -35,7 +37,7 @@ public class UserController {
 	
 	@Autowired
 	private IUserService userService;
-
+	
 	@RequestMapping(value = { "/login" }, method = { RequestMethod.POST,
 			RequestMethod.GET })
 	public User login(
@@ -88,6 +90,7 @@ public class UserController {
 	
 	private void sendObject(){
 		simpleRabbitTemplate.convertAndSend("exchangeOne", "exchangeOne.queue.key", buildMessage());
+			
 	}
 	
 	private void sendJson(){
@@ -96,5 +99,15 @@ public class UserController {
 		mmu.setName("1234");
 		jsonRabbitTemplate.convertAndSend("exchangeOne", "exchangeOne.queue.key", mmu);
 	}
-
+	
+	@RequestMapping(value = { "/helloHy" }, method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String helloHy() {
+		
+		HelloWorldCommand command = new HelloWorldCommand();
+		String rlt = command.execute();
+		logger.info("username={};", rlt);
+		return rlt;
+	}
+	
 }
