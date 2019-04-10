@@ -2,6 +2,8 @@ package com.ivan.tpp.boot.business.user.controller;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Message;
@@ -15,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ivan.tpp.boot.business.user.model.User;
+import com.ivan.tpp.boot.business.user.service.IHystrixService;
 import com.ivan.tpp.boot.business.user.service.IUserService;
 import com.ivan.tpp.boot.business.user.service.impl.HelloWorldCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 
 @Controller
 @ResponseBody
@@ -37,6 +41,9 @@ public class UserController {
 	
 	@Autowired
 	private IUserService userService;
+	
+	@Resource(name="hystrixService")
+	private IHystrixService hystrixService;
 	
 	@RequestMapping(value = { "/login" }, method = { RequestMethod.POST,
 			RequestMethod.GET })
@@ -109,5 +116,14 @@ public class UserController {
 		logger.info("username={};", rlt);
 		return rlt;
 	}
+	
+	@RequestMapping(value = { "/hyAnto" }, method = { RequestMethod.POST,
+			RequestMethod.GET })
+	public String hyAnto(){
+		logger.info("============================/user/hyAnto===========================");
+		return hystrixService.login();
+	}
+	
+	
 	
 }
