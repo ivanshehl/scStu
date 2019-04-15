@@ -7,10 +7,10 @@
     <artifactId>gangbeng</artifactId>
     <version>1.0.0</version>
   </parent>
-  <groupId>com.ivan.tpp</groupId>
-  <artifactId>gangbeng-zuul</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <name>gangbeng-zuul</name>
+  <groupId>com.ivan.tpp.stu</groupId>
+  <artifactId>gangbeng-stu</artifactId>
+  <version>1.0.0</version>
+  <name>gangbeng-stu</name>
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
