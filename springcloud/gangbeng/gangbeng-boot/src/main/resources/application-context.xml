@@ -16,6 +16,6 @@
     http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
 	default-autowire="byName">
 	
-	
+	<import resource="application-tx.xml"/>
 	
 </beans>

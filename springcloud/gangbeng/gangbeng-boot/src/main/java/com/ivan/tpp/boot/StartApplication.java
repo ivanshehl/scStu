@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @MapperScan("com.ivan.tpp.boot.business.*.dao")
 @ComponentScan
-@ImportResource(locations = { "classpath:application-tx.xml" })
+@ImportResource(locations = { "classpath:application-context.xml" })
 @EnableAutoConfiguration
 @EnableCircuitBreaker
 public class StartApplication {
