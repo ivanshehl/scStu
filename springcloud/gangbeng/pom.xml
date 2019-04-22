@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.ivan.tpp</groupId>
 	<artifactId>gangbeng</artifactId>
@@ -30,6 +31,7 @@
 		<jolokia.version>1.6.0</jolokia.version>
 		<commons-io.version>2.6</commons-io.version>
 		<springcloud.version>Edgware.SR3</springcloud.version>
+		<httpclient.version>4.5.6</httpclient.version>
 	</properties>
 
 	<dependencyManagement>
@@ -49,7 +51,7 @@
 			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-    			<artifactId>spring-cloud-dependencies</artifactId>
+				<artifactId>spring-cloud-dependencies</artifactId>
 				<version>${springcloud.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
@@ -102,6 +104,41 @@
 				<version>2.6</version>
 			</dependency>
 
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>${httpclient.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient-cache</artifactId>
+				<version>${httpclient.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpmime</artifactId>
+				<version>${httpclient.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>${commons-io.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -111,10 +148,10 @@
 		<module>gangbeng-hystrix</module>
 		<module>gangbeng-ribbon</module>
 		<module>gangbeng-stream</module>
-    <module>gangbeng-gateway</module>
-    <module>gangbeng-core</module>
-    <module>gangbeng-stu</module>
-  </modules>
+		<module>gangbeng-gateway</module>
+		<module>gangbeng-core</module>
+		<module>gangbeng-stu</module>
+	</modules>
 
 	<build>
 		<plugins>
