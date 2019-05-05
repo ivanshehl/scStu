@@ -9,7 +9,7 @@ public class HelloWorldCommand extends HystrixCommand<String> {
     
     public HelloWorldCommand() {
         //至少要指定一个 command group name 的值(CommandGroup)
-        super(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"));
+        super(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"),100000);
     }
 
     @Override

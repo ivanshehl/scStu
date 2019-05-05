@@ -16,7 +16,7 @@ public class HystrixServiceImpl implements IHystrixService {
 	@HystrixCommand(groupKey = "GroupOne",
 	// 线程池的名称
 	fallbackMethod = "fallbackTest", commandProperties = {
-			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000"),
+			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "10000000"),
 			// 是否开启熔断器
 			@HystrixProperty(name = "circuitBreaker.enabled", value = "true"),
 			// 请求的失败数目超过这个之后，就会打开熔断器

@@ -11,7 +11,7 @@ public class HttpTest {
 	}
 	
 	public static void aopTest(){
-		String url = "http://localhost:8080/userExtend/info";
+		String url = "http://localhost:8080/user/helloHy";
 		Map<String,String> params = Maps.newHashMap();
 		String rlt = HttpUtils.post(url, params);
 		System.out.println(rlt);

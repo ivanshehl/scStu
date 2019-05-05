@@ -23,6 +23,7 @@ public class StartApplication {
 //		spring.rabbitmq
 //		RabbitConnectionFactoryBean
 //		AsyncRabbitTemplate
+//		HystrixDynamicPropertiesArchaius
 		SpringApplication.run(StartApplication.class, args);
 	}
 	
