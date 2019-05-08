@@ -362,6 +362,7 @@ public class HystrixRollingNumber {
 
     /**
      * Counters for a given 'bucket' of time.
+     * 给定时间桶内计数器
      */
     /* package */static class Bucket {
         final long windowStart;

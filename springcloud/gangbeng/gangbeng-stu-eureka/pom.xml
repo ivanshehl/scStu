@@ -9,9 +9,9 @@
 		<version>1.0.0</version>
 	</parent>
 	<groupId>com.ivan.tpp</groupId>
-	<artifactId>gangbeng-eureka</artifactId>
-	<version>1.0.0</version>
-	<name>gangbeng-eureka</name>
+	<artifactId>gangbeng-stu-eureka</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<name>gangbeng-stu-eureka</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
